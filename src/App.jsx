@@ -8,7 +8,6 @@ import {
   createMuiTheme,
   ThemeProvider,
   Typography,
-  Button,
 } from "@material-ui/core";
 
 function App() {
@@ -30,24 +29,24 @@ function App() {
     },
   });
 
+  /* Function to change using the hook */
   const toggleDarkMode = () => {
     setactualTheme(
       actualTheme.palette.type === "dark" ? themeLight : themeDark
     );
   };
 
-  /* Hook */
+  const isDarkMode = () => actualTheme.palette.type === "dark" ? true : false;
+
+  /* Hook to change theme*/
   const [actualTheme, setactualTheme] = useState(themeLight);
 
   return (
     <ThemeProvider theme={actualTheme}>
       <Paper style={{ height: "100vh" }}>
         <Grid container direction="column">
-          <TheBatAppBar />
+          <TheBatAppBar changeTheme={toggleDarkMode} isDarkMode={isDarkMode}/>
           <Typography variant="h1">HOLAAA</Typography>
-          <Button variant="text" color="default" onClick={toggleDarkMode}>
-            Presioname!
-          </Button>
         </Grid>
       </Paper>
     </ThemeProvider>
